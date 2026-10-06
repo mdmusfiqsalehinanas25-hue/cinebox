@@ -598,7 +598,160 @@ footer{
  </div>
 </div>
 
+<!-- PROFILE PAGE -->
+<div id="profilePage" class="profilePage">
 
+  <div class="profileTop">
+    <button class="profileBack" onclick="closeProfile()">←</button>
+    <h2>Profile</h2>
+  </div>
+
+  <div class="profileContainer">
+
+    <div class="profileHeader">
+
+      <div class="avatarWrap">
+        <div id="profileAvatar" class="profileAvatar">
+          M
+        </div>
+
+        <button class="avatarEdit" onclick="editProfile()">
+          ✎
+        </button>
+      </div>
+
+      <div class="profileMainInfo">
+        <h1 id="profileName">Guest User</h1>
+        <p id="profileEmail">guest@cinebox.com</p>
+        <span class="memberBadge">CineBox Member</span>
+      </div>
+
+    </div>
+
+    <div class="profileSection">
+      <h3>Account</h3>
+
+      <div class="profileOption" onclick="editProfile()">
+        <div class="optionIcon">👤</div>
+        <div class="optionText">
+          <strong>Edit Profile</strong>
+          <span>Change your name and profile information</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+
+      <div class="profileOption" onclick="showMyList()">
+        <div class="optionIcon">❤️</div>
+        <div class="optionText">
+          <strong>My List</strong>
+          <span>Your saved movies and series</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+
+      <div class="profileOption" onclick="openDownloads()">
+        <div class="optionIcon">📥</div>
+        <div class="optionText">
+          <strong>Downloads</strong>
+          <span>Watch your downloaded content</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+    </div>
+
+    <div class="profileSection">
+      <h3>Settings</h3>
+
+      <div class="profileOption" onclick="alert('Language settings will be added soon.')">
+        <div class="optionIcon">🌐</div>
+        <div class="optionText">
+          <strong>Language</strong>
+          <span>English</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+
+      <div class="profileOption" onclick="alert('Playback settings will be added soon.')">
+        <div class="optionIcon">▶️</div>
+        <div class="optionText">
+          <strong>Playback Settings</strong>
+          <span>Video quality and autoplay</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+
+      <div class="profileOption" onclick="alert('Notification settings will be added soon.')">
+        <div class="optionIcon">🔔</div>
+        <div class="optionText">
+          <strong>Notifications</strong>
+          <span>Manage notifications</span>
+        </div>
+        <div class="optionArrow">›</div>
+      </div>
+    </div>
+
+    <button class="logoutButton" onclick="logoutUser()">
+      Sign Out
+    </button>
+
+    <p class="profileVersion">
+      CineBox • Version 1.0
+    </p>
+
+  </div>
+
+</div>
+
+<!-- EDIT PROFILE -->
+<div id="editProfileOverlay" class="overlay">
+
+  <div class="editBox">
+
+    <button class="close" onclick="closeEditProfile()">×</button>
+
+    <h2>Edit Profile</h2>
+
+    <p class="editSubtitle">
+      Update your CineBox profile
+    </p>
+
+    <label>Name</label>
+
+    <input
+      id="editName"
+      class="profileInput"
+      type="text"
+      placeholder="Your name"
+    >
+
+    <label>Email</label>
+
+    <input
+      id="editEmail"
+      class="profileInput"
+      type="email"
+      placeholder="Email address"
+    >
+
+    <label>Profile Avatar</label>
+
+    <div class="avatarChoices">
+
+      <button onclick="chooseAvatar('M')">M</button>
+      <button onclick="chooseAvatar('A')">A</button>
+      <button onclick="chooseAvatar('C')">C</button>
+      <button onclick="chooseAvatar('🎬')">🎬</button>
+      <button onclick="chooseAvatar('🍿')">🍿</button>
+
+    </div>
+
+    <button class="saveProfileButton" onclick="saveProfile()">
+      Save Changes
+    </button>
+
+  </div>
+
+                                   </div>
 <!-- MOBILE NAV -->
 <div class="bottom">
 

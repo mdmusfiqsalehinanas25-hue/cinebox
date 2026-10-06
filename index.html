@@ -1767,6 +1767,63 @@ async function loadLoggedInUser(){
   loadProfile();
 
  }
+ /* =========================
+   CINEBOX SESSION CHECK
+========================= */
+
+async function checkCineBoxSession(){
+
+  const { data } =
+    await cineboxSupabase.auth.getSession();
+
+  if(data.session){
+
+    await loadLoggedInUser();
+
+    closeAuthPage();
+
+  }
+
+}
+
+
+/* =========================
+   AUTH STATE LISTENER
+========================= */
+
+cineboxSupabase.auth.onAuthStateChange(
+  async (event, session) => {
+
+    if(event === "SIGNED_IN" && session){
+
+      await loadLoggedInUser();
+
+      closeAuthPage();
+
+    }
+
+    if(event === "SIGNED_OUT"){
+
+      console.log("CineBox user signed out.");
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START SESSION CHECK
+========================= */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    checkCineBoxSession();
+
+  }
+);
 </script>
 <!-- CINEBOX AUTH PAGE -->
 

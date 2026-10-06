@@ -640,6 +640,157 @@ footer{
   }
 
  }
+ /* =========================
+   CINEBOX AUTH DESIGN
+========================= */
+
+.authPage{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:#050505;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  overflow-y:auto;
+}
+
+.authPage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.88)
+    );
+  pointer-events:none;
+}
+
+.authBox{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:450px;
+  background:rgba(15,15,15,.96);
+  padding:48px 45px;
+  border-radius:8px;
+  box-shadow:0 20px 60px rgba(0,0,0,.7);
+}
+
+.authLogo{
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:white;
+  margin-bottom:35px;
+}
+
+.authLogo span{
+  color:#e50914;
+}
+
+.authBox h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.authSubtitle{
+  color:#999;
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+.authInput{
+  width:100%;
+  box-sizing:border-box;
+  padding:15px;
+  margin-bottom:14px;
+  background:#252525;
+  border:1px solid #333;
+  border-radius:5px;
+  color:white;
+  outline:none;
+  font-size:14px;
+}
+
+.authInput:focus{
+  border-color:#e50914;
+  background:#292929;
+}
+
+.authInput::placeholder{
+  color:#888;
+}
+
+.authButton{
+  width:100%;
+  padding:15px;
+  margin-top:8px;
+  background:#e50914;
+  color:white;
+  border:0;
+  border-radius:5px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.authButton:hover{
+  background:#b20710;
+}
+
+.authMessage{
+  min-height:20px;
+  margin-top:15px;
+  color:#bbb;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.authSwitch{
+  margin-top:30px;
+  color:#777;
+  font-size:14px;
+}
+
+.authSwitch button{
+  background:none;
+  border:0;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  padding:0;
+  font-size:14px;
+}
+
+.authSwitch button:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+  .authPage{
+    padding:15px;
+  }
+
+  .authBox{
+    padding:35px 22px;
+    border-radius:6px;
+  }
+
+  .authLogo{
+    font-size:25px;
+    margin-bottom:30px;
+  }
+
+  .authBox h1{
+    font-size:27px;
+  }
+
+ }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>

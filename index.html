@@ -1211,7 +1211,162 @@ function home(){
  });
 
 }
+/* =========================
+   CINEBOX PROFILE SYSTEM
+========================= */
 
+let selectedAvatar = "M";
+
+let profileData = JSON.parse(
+  localStorage.getItem("cineboxProfile") || "null"
+);
+
+if(!profileData){
+
+  profileData = {
+    name:"Guest User",
+    email:"guest@cinebox.com",
+    avatar:"M"
+  };
+
+  localStorage.setItem(
+    "cineboxProfile",
+    JSON.stringify(profileData)
+  );
+
+}
+
+function openProfile(){
+
+  loadProfile();
+
+  document.getElementById("profilePage").style.display="block";
+
+  document.body.style.overflow="hidden";
+
+}
+
+function closeProfile(){
+
+  document.getElementById("profilePage").style.display="none";
+
+  document.body.style.overflow="";
+
+}
+
+function loadProfile(){
+
+  document.getElementById("profileName").innerText =
+    profileData.name;
+
+  document.getElementById("profileEmail").innerText =
+    profileData.email;
+
+  document.getElementById("profileAvatar").innerText =
+    profileData.avatar;
+
+}
+
+function editProfile(){
+
+  document.getElementById("editName").value =
+    profileData.name;
+
+  document.getElementById("editEmail").value =
+    profileData.email;
+
+  selectedAvatar = profileData.avatar;
+
+  document.getElementById("editProfileOverlay").style.display="flex";
+
+}
+
+function closeEditProfile(){
+
+  document.getElementById("editProfileOverlay").style.display="none";
+
+}
+
+function chooseAvatar(avatar){
+
+  selectedAvatar = avatar;
+
+}
+
+function saveProfile(){
+
+  const name =
+    document.getElementById("editName").value.trim();
+
+  const email =
+    document.getElementById("editEmail").value.trim();
+
+  if(!name){
+
+    alert("Please enter your name.");
+
+    return;
+
+  }
+
+  profileData = {
+
+    name:name,
+
+    email:email || "guest@cinebox.com",
+
+    avatar:selectedAvatar
+
+  };
+
+  localStorage.setItem(
+    "cineboxProfile",
+    JSON.stringify(profileData)
+  );
+
+  loadProfile();
+
+  closeEditProfile();
+
+  alert("Profile updated successfully!");
+
+}
+
+function openDownloads(){
+
+  alert(
+    "Your Downloads\n\n" +
+    "No downloaded videos yet."
+  );
+
+}
+
+function logoutUser(){
+
+  const confirmLogout =
+    confirm("Are you sure you want to sign out?");
+
+  if(confirmLogout){
+
+    localStorage.removeItem("cineboxProfile");
+
+    profileData = {
+
+      name:"Guest User",
+
+      email:"guest@cinebox.com",
+
+      avatar:"M"
+
+    };
+
+    loadProfile();
+
+    alert("You have been signed out.");
+
+  }
+
+ }
 </script>
 
 </body>

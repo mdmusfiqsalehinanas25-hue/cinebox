@@ -336,6 +336,310 @@ footer{
 
  footer{padding-bottom:90px}
 }
+ /* =========================
+   CINEBOX PROFILE PAGE
+========================= */
+
+.profilePage{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1800;
+  background:#050505;
+  overflow-y:auto;
+}
+
+.profileTop{
+  height:70px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:0 5%;
+  background:#080808;
+  border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.profileTop h2{
+  font-size:22px;
+}
+
+.profileBack{
+  background:#222;
+  border:0;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:23px;
+  cursor:pointer;
+}
+
+.profileContainer{
+  max-width:800px;
+  margin:auto;
+  padding:45px 25px 100px;
+}
+
+.profileHeader{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  padding-bottom:40px;
+  border-bottom:1px solid #252525;
+}
+
+.avatarWrap{
+  position:relative;
+}
+
+.profileAvatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#e50914,#8b0000);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:43px;
+  font-weight:900;
+  box-shadow:0 8px 30px rgba(229,9,20,.25);
+}
+
+.avatarEdit{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:3px solid #050505;
+  background:white;
+  color:#000;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.profileMainInfo h1{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.profileMainInfo p{
+  color:#999;
+  margin-bottom:12px;
+}
+
+.memberBadge{
+  display:inline-block;
+  background:#222;
+  color:#bbb;
+  padding:6px 10px;
+  border-radius:5px;
+  font-size:11px;
+}
+
+.profileSection{
+  margin-top:35px;
+}
+
+.profileSection h3{
+  color:#aaa;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+.profileOption{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px 5px;
+  border-bottom:1px solid #202020;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.profileOption:hover{
+  background:#101010;
+  padding-left:12px;
+}
+
+.optionIcon{
+  width:45px;
+  height:45px;
+  border-radius:8px;
+  background:#181818;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+
+.optionText{
+  flex:1;
+}
+
+.optionText strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:5px;
+}
+
+.optionText span{
+  display:block;
+  color:#777;
+  font-size:12px;
+}
+
+.optionArrow{
+  color:#777;
+  font-size:28px;
+}
+
+.logoutButton{
+  width:100%;
+  margin-top:40px;
+  padding:15px;
+  background:#222;
+  border:1px solid #333;
+  border-radius:5px;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.logoutButton:hover{
+  background:#333;
+}
+
+.profileVersion{
+  text-align:center;
+  color:#555;
+  font-size:11px;
+  margin-top:25px;
+}
+
+.editBox{
+  background:#181818;
+  width:100%;
+  max-width:480px;
+  padding:30px;
+  border-radius:12px;
+  position:relative;
+}
+
+.editBox h2{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.editSubtitle{
+  color:#777;
+  margin-bottom:25px;
+  font-size:13px;
+}
+
+.editBox label{
+  display:block;
+  color:#aaa;
+  font-size:12px;
+  margin:15px 0 7px;
+}
+
+.profileInput{
+  width:100%;
+  padding:13px;
+  background:#0d0d0d;
+  border:1px solid #333;
+  border-radius:5px;
+  color:white;
+  outline:none;
+}
+
+.profileInput:focus{
+  border-color:#e50914;
+}
+
+.avatarChoices{
+  display:flex;
+  gap:10px;
+  margin:10px 0 25px;
+}
+
+.avatarChoices button{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:2px solid #333;
+  background:#222;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:17px;
+}
+
+.avatarChoices button:hover{
+  border-color:#e50914;
+}
+
+.saveProfileButton{
+  width:100%;
+  background:#e50914;
+  color:white;
+  border:0;
+  padding:14px;
+  border-radius:5px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.saveProfileButton:hover{
+  background:#b20710;
+}
+
+@media(max-width:700px){
+
+  .profileContainer{
+    padding:30px 18px 100px;
+  }
+
+  .profileHeader{
+    gap:18px;
+  }
+
+  .profileAvatar{
+    width:82px;
+    height:82px;
+    font-size:32px;
+  }
+
+  .profileMainInfo h1{
+    font-size:23px;
+  }
+
+  .profileMainInfo p{
+    font-size:12px;
+  }
+
+  .profileOption{
+    padding:17px 3px;
+  }
+
+  .optionIcon{
+    width:40px;
+    height:40px;
+    font-size:18px;
+  }
+
+  .editBox{
+    padding:25px 20px;
+  }
+
+ }
 </style>
 </head>
 

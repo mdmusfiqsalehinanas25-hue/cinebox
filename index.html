@@ -1369,6 +1369,108 @@ function logoutUser(){
 
  }
 </script>
+<!-- CINEBOX AUTH PAGE -->
 
+<div id="authPage" class="authPage">
+
+  <div class="authBox">
+
+    <div class="authLogo">CINE<span>BOX</span></div>
+
+    <div id="loginForm">
+
+      <h1>Sign In</h1>
+      <p class="authSubtitle">
+        Sign in to continue watching CineBox
+      </p>
+
+      <input
+        id="loginEmail"
+        class="authInput"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="loginPassword"
+        class="authInput"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="authButton"
+        onclick="loginUser()">
+        Sign In
+      </button>
+
+      <p id="loginMessage" class="authMessage"></p>
+
+      <div class="authSwitch">
+        New to CineBox?
+        <button onclick="showSignup()">
+          Sign up now.
+        </button>
+      </div>
+
+    </div>
+
+
+    <div id="signupForm" style="display:none">
+
+      <h1>Create Account</h1>
+
+      <p class="authSubtitle">
+        Create your CineBox account
+      </p>
+
+      <input
+        id="signupName"
+        class="authInput"
+        type="text"
+        placeholder="Your name"
+      >
+
+      <input
+        id="signupEmail"
+        class="authInput"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="signupPassword"
+        class="authInput"
+        type="password"
+        placeholder="Password"
+      >
+
+      <input
+        id="signupConfirmPassword"
+        class="authInput"
+        type="password"
+        placeholder="Confirm password"
+      >
+
+      <button
+        class="authButton"
+        onclick="signupUser()">
+        Sign Up
+      </button>
+
+      <p id="signupMessage" class="authMessage"></p>
+
+      <div class="authSwitch">
+        Already have an account?
+        <button onclick="showLogin()">
+          Sign in.
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>

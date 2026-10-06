@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>CineBox - Your Entertainment</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050505;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(0,0,0,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #e50914;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #e50914;
+    }
+
+    .search {
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: white;
+      padding: 9px 12px;
+      width: 170px;
+      outline: none;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      padding: 60px 7%;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #050505 10%, rgba(5,5,5,.75) 45%, rgba(5,5,5,.1)),
+        linear-gradient(0deg, #050505 0%, transparent 35%),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 75px);
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 5px;
+      padding: 12px 23px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 8px;
+      font-size: 15px;
+    }
+
+    .play {
+      background: white;
+      color: black;
+    }
+
+    .more {
+      background: #555;
+      color: white;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 25px 5%;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .movie-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .movie-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .movie-card {
+      min-width: 150px;
+      height: 220px;
+      border-radius: 7px;
+      overflow: hidden;
+      position: relative;
+      background: #151515;
+      cursor: pointer;
+      transition: transform .25s;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.06);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .movie-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 25px 8px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,.95));
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      background: #e50914;
+      padding: 4px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 50px 20px;
+      border-top: 1px solid #222;
+      margin-top: 30px;
+    }
+
+    /* MOBILE */
+    @media(max-width: 700px) {
+
+      .navbar {
+        padding: 0 15px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .search {
+        width: 120px;
+      }
+
+      .hero {
+        min-height: 470px;
+        padding: 30px 20px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 20px 15px;
+      }
+
+      .movie-card {
+        min-width: 125px;
+        height: 185px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">CineBox</div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#movies">Movies</a></li>
+      <li><a href="#series">Series</a></li>
+      <li><a href="#trending">Trending</a></li>
+    </ul>
+
+    <input
+      class="search"
+      type="text"
+      placeholder="Search..."
+      onkeyup="searchMovies(this.value)"
+    >
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Last Horizon</h1>
+
+      <p>
+        A mysterious journey beyond the known world.
+        Discover secrets, face impossible choices,
+        and find the last hope for humanity.
+      </p>
+
+      <button class="btn play" onclick="playMovie()">
+        ▶ Play
+      </button>
+
+      <button class="btn more" onclick="showInfo()">
+        ⓘ More Info
+      </button>
+    </div>
+  </section>
+
+  <!-- TRENDING -->
+  <section class="section" id="trending">
+    <h2>🔥 Trending Now</h2>
+
+    <div class="movie-row">
+
+      <div class="movie-card">
+        <span class="badge">HD</span>
+        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Midnight Signal</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Ocean of Dreams</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">City Lights</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Shadow Code</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Beyond Tomorrow</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MOVIES -->
+  <section class="section" id="movies">
+    <h2>🎬 Popular Movies</h2>
+
+    <div class="movie-row">
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">The Final Journey</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">First Love Again</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">The Forgotten</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Night Runner</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERIES -->
+  <section class="section" id="series">
+    <h2>📺 Popular Series</h2>
+
+    <div class="movie-row">
+
+      <div class="movie-card">
+        <span class="badge">NEW</span>
+        <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Hidden Truth</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">Our Story</div>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://images.unsplash.com/photo-1586899028174-e7098604235b?auto=format&fit=crop&w=500&q=80">
+        <div class="movie-title">The Stranger</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <h3>CineBox</h3>
+    <p>Your Entertainment. Your Box.</p>
+    <br>
+    <p>© 2026 CineBox. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    function playMovie() {
+      alert("Video player will be connected in the next step.");
+    }
+
+    function showInfo() {
+      alert(
+        "The Last Horizon\n\n" +
+        "A mysterious journey beyond the known world."
+      );
+    }
+
+    function searchMovies(value) {
+      const cards = document.querySelectorAll(".movie-card");
+
+      value = value.toLowerCase();
+
+      cards.forEach(card => {
+        const title = card.innerText.toLowerCase();
+
+        if (title.includes(value)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+  </script>
+
+</body>
+  </html>

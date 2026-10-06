@@ -1388,15 +1388,28 @@ if(!profileData){
 
 }
 
-function openProfile(){
+async function openProfile(){
 
-  loadProfile();
+  const { data } =
+    await cineboxSupabase.auth.getSession();
 
-  document.getElementById("profilePage").style.display="block";
+  if(data.session){
 
-  document.body.style.overflow="hidden";
+    await loadLoggedInUser();
 
-}
+    document.getElementById("profilePage").style.display =
+      "block";
+
+    document.body.style.overflow =
+      "hidden";
+
+  }else{
+
+    openAuthPage();
+
+  }
+
+ }
 
 function closeProfile(){
 

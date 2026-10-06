@@ -1379,6 +1379,243 @@ const cineboxSupabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
+ /* =========================
+   CINEBOX AUTH SYSTEM
+========================= */
+
+async function signupUser(){
+
+  const name =
+    document.getElementById("signupName").value.trim();
+
+  const email =
+    document.getElementById("signupEmail").value.trim();
+
+  const password =
+    document.getElementById("signupPassword").value;
+
+  const confirmPassword =
+    document.getElementById("signupConfirmPassword").value;
+
+  const message =
+    document.getElementById("signupMessage");
+
+
+  if(!name || !email || !password || !confirmPassword){
+
+    message.innerText =
+      "Please fill in all fields.";
+
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    message.innerText =
+      "Password must be at least 6 characters.";
+
+    return;
+  }
+
+
+  if(password !== confirmPassword){
+
+    message.innerText =
+      "Passwords do not match.";
+
+    return;
+  }
+
+
+  message.innerText =
+    "Creating your account...";
+
+
+  const { data, error } =
+    await cineboxSupabase.auth.signUp({
+
+      email:email,
+
+      password:password,
+
+      options:{
+        data:{
+          full_name:name
+        }
+      }
+
+    });
+
+
+  if(error){
+
+    message.innerText =
+      error.message;
+
+    return;
+  }
+
+
+  if(data.user){
+
+    message.innerText =
+      "Account created! Check your email to verify your account.";
+
+  }
+
+}
+
+
+async function loginUser(){
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const message =
+    document.getElementById("loginMessage");
+
+
+  if(!email || !password){
+
+    message.innerText =
+      "Please enter your email and password.";
+
+    return;
+  }
+
+
+  message.innerText =
+    "Signing in...";
+
+
+  const { data, error } =
+    await cineboxSupabase.auth.signInWithPassword({
+
+      email:email,
+
+      password:password
+
+    });
+
+
+  if(error){
+
+    message.innerText =
+      error.message;
+
+    return;
+  }
+
+
+  message.innerText =
+    "Login successful!";
+
+
+  setTimeout(() => {
+
+    closeAuthPage();
+
+    loadLoggedInUser();
+
+  },700);
+
+}
+
+
+function showSignup(){
+
+  document.getElementById("loginForm").style.display =
+    "none";
+
+  document.getElementById("signupForm").style.display =
+    "block";
+
+}
+
+
+function showLogin(){
+
+  document.getElementById("signupForm").style.display =
+    "none";
+
+  document.getElementById("loginForm").style.display =
+    "block";
+
+}
+
+
+function openAuthPage(){
+
+  document.getElementById("authPage").style.display =
+    "flex";
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+function closeAuthPage(){
+
+  document.getElementById("authPage").style.display =
+    "none";
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+async function logoutCineBox(){
+
+  await cineboxSupabase.auth.signOut();
+
+  closeProfile();
+
+  alert("You have been signed out.");
+
+}
+
+
+async function loadLoggedInUser(){
+
+  const { data } =
+    await cineboxSupabase.auth.getUser();
+
+  const user =
+    data.user;
+
+
+  if(!user){
+
+    return;
+  }
+
+
+  const name =
+    user.user_metadata?.full_name ||
+    user.email?.split("@")[0] ||
+    "CineBox User";
+
+
+  profileData = {
+
+    name:name,
+
+    email:user.email || "",
+
+    avatar:name.charAt(0).toUpperCase()
+
+  };
+
+
+  loadProfile();
+
+ }
 </script>
 <!-- CINEBOX AUTH PAGE -->
 

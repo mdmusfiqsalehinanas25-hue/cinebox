@@ -1368,6 +1368,17 @@ function logoutUser(){
   }
 
  }
+ /* =========================
+   SUPABASE CONNECTION
+========================= */
+
+const SUPABASE_URL = "https://drakywxpdthsrgztjred.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_jYRk3uG7SHZLKTZgoIQ-Eg_z5IEbLu8";
+
+const cineboxSupabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 </script>
 <!-- CINEBOX AUTH PAGE -->
 
